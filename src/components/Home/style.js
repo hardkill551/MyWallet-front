@@ -54,7 +54,7 @@ background-color:white;
 export const Background = styled.div`
 background-color:#8C11BE;
 width: 100vw;
-height: 100vh;
+height: 100dvh;
 display:flex;
 flex-direction:column;
 font-family: 'Raleway', sans-serif;
