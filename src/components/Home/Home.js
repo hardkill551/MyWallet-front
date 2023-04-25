@@ -10,34 +10,39 @@ import { Background, Balance, History, NoHistory } from "./style";
 export default function Home(){
     const navigate = useNavigate()
     const lctoken = localStorage.getItem("token")
-    const {token} = useContext(UserContext)
+    const {setToken} = useContext(UserContext)
     const [transaction, setTransaction] = useState([])
     const [name, setName] = useState("")
     useEffect(()=>{
         if(!lctoken){
             navigate("/")
+
         }
         if(lctoken){
             axios.get(process.env.REACT_APP_API+"/active", {
                 headers:{
-                    token:lctoken
+                    Authorization: `Bearer ${lctoken}`
                 }
             }).then(res=>{
                 if(res.data===false){
                     navigate("/")
                 }
                 setName(res.data)
+                setToken(lctoken)
+            }).catch(err=>{
+                alert(err.response.data)
+            })
+            axios.get(process.env.REACT_APP_API+"/home", {headers:{
+                Authorization: `Bearer ${lctoken}`
+            }}).then(res =>{
+                setTransaction(res.data)
             }).catch(err=>{
                 alert(err.response.data)
             })
         }
         
-        axios.get(process.env.REACT_APP_API+"/home", token).then(res =>{
-            setTransaction(res.data)
-        }).catch(err=>{
-            alert(err.response.data)
-        })
-    })
+
+    }, [])
     
 
 

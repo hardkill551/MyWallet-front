@@ -8,10 +8,10 @@ export default function SignUp(){
 
     const token = localStorage.getItem("token")
     useEffect(()=>{
+        
         if(token){
-            axios.get(process.env.REACT_APP_API+"/active", {
-                headers:{
-                    token
+            axios.get(process.env.REACT_APP_API+"/active", {headers:{
+                    Authorization: `Bearer ${token}`
                 }
             }).then(res=>{
                 if(res.data){

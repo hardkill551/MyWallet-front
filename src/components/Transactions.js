@@ -11,16 +11,15 @@ export default function Transactions(){
     const navigate = useNavigate()
     const lctoken = localStorage.getItem("token")
     useEffect(()=>{
-        if (params.tipo!=="saida"&&params.tipo!=="entrada"){
+        if (params.tipo!=="saida"&&params.tipo!=="entrada" ){
             navigate("/home")
         }
         if(!lctoken){
             navigate("/")
         }
         if(lctoken){
-            axios.get(process.env.REACT_APP_API+"/active", {
-                headers:{
-                    token:lctoken
+            axios.get(process.env.REACT_APP_API+"/active", {headers:{
+                    Authorization:`Bearer ${lctoken}`
                 }
             }).then(res=>{
                 if(!res.data){
@@ -59,7 +58,9 @@ export default function Transactions(){
         if(comes.value<=0){
             return alert("O valor não pode ser negativo ou nulo!")
         }
-        axios.post(process.env.REACT_APP_API+"/transacao/"+params.tipo, comes, token).then(res=>{
+        axios.post(process.env.REACT_APP_API+"/transacao/"+params.tipo, comes, {headers: {
+            Authorization: `Bearer ${lctoken}`
+        }}).then(res=>{
             setComes({value: "", description: ""})
         }).catch(err=>{
             alert(err.response.data)

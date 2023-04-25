@@ -11,9 +11,8 @@ export default function SignIn(){
     const token = localStorage.getItem("token")
     useEffect(()=>{
         if(token){
-            axios.get(process.env.REACT_APP_API+"/active", {
-                headers:{
-                    token
+            axios.get(process.env.REACT_APP_API+"/active", {headers:{
+                    Authorization: `Bearer ${token}`
                 }
             }).then(res=>{
                 if(res.data){
@@ -23,7 +22,7 @@ export default function SignIn(){
                 alert(err.response.data)
             })
         }
-    })
+    }, [])
 
 
     const [user, setUser] = useState({email: "", password: ""})
@@ -51,9 +50,7 @@ export default function SignIn(){
 
         }
         axios.post(process.env.REACT_APP_API, user).then(res => {
-            setToken({headers:{
-                Authorization: `Bearer ${res.data}` 
-            }})
+            setToken(res.data)
             localStorage.setItem("token", res.data)
             navigate("/home")
         }).catch(err => {
