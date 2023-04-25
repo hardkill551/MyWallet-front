@@ -37,6 +37,7 @@ p:first-child{
 
 p:nth-child(2){
     font-weight:700;
+    color:${a=>a.total>0?"#03AC00":"#C70000"}
 }
 `
 export const History = styled.div `

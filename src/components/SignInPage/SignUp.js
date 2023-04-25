@@ -21,7 +21,7 @@ export default function SignUp(){
                 alert(err.response.data)
             })
         }
-    })
+    }, [])
 
 
     const navigate = useNavigate()

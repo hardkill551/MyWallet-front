@@ -11,7 +11,9 @@ export default function Transactions(){
     const navigate = useNavigate()
     const lctoken = localStorage.getItem("token")
     useEffect(()=>{
-        
+        if (params.tipo!=="saida"&&params.tipo!=="entrada"){
+            navigate("/home")
+        }
         if(!lctoken){
             navigate("/")
         }
@@ -28,9 +30,7 @@ export default function Transactions(){
                 alert(err.response.data)
             })
         }
-        if (params.tipo!=="saida"&&params.tipo!=="entrada"){
-            navigate("/home")
-        }
+        
     })
 
     

@@ -12,6 +12,7 @@ export default function Home(){
     const lctoken = localStorage.getItem("token")
     const {token} = useContext(UserContext)
     const [transaction, setTransaction] = useState([])
+    const [name, setName] = useState("")
     useEffect(()=>{
         if(!lctoken){
             navigate("/")
@@ -22,9 +23,10 @@ export default function Home(){
                     token:lctoken
                 }
             }).then(res=>{
-                if(!res.data){
+                if(res.data===false){
                     navigate("/")
                 }
+                setName(res.data)
             }).catch(err=>{
                 alert(err.response.data)
             })
@@ -42,16 +44,16 @@ export default function Home(){
     return (
         <Background>
             <div>
-                <h1>Olá, Fulano!</h1>
-                <IoExitOutline/>
+                <h1>Olá, {name}!</h1>
+                <IoExitOutline onClick={disconnect}/>
             </div>
             
             {transaction.length>0?(
             <History>
-                {transaction.map(t=>(
-                    <Operation value={t.value} description={t.description} date={t.date} type={t.type}/>
+                {transaction.map((t, i)=>(
+                    <Operation key={i} value={t.value} description={t.description} date={t.date} type={t.type}/>
                     ))}
-                    <Balance>
+                    <Balance total={total()}>
                         <p>SALDO</p>
                         <p>{total()}</p>
                     </Balance>
@@ -78,16 +80,19 @@ export default function Home(){
 
     function total(){
         let ct = 0
-        transaction.forEach(t=>{
-            if(t.type==="entrada"){
-                ct+=t.value
+        for(let i = 0; i<transaction.length;i++){
+            if(transaction[i].type==="entrada"){
+                ct+=Number(transaction[i].value)
             }
             else{
-                ct-=t.value
+                ct-=Number(transaction[i].value)
             }
-            
-        })
-        return ct
+        }
+        return ct.toFixed(2)
+    }
+    function disconnect(){
+        localStorage.removeItem("token")
+        navigate("/")
     }
 }
 
