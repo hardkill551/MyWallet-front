@@ -4,7 +4,7 @@ export default function Operation({value, description, date, type}){
     return (
         <Transaction type={type}>
             <div>
-                <p>{date.substring(5, -6)}</p>
+                <p>{date}</p>
                 <p>{description}</p>
             </div>
             <p>{value}</p>
