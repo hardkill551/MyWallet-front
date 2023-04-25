@@ -96,6 +96,11 @@ form div:first-child{
 }
 
 button{
+    font-size:26px;
     align-items:center;
+    svg{
+        margin-top:22px;
+        height:58px;
+    }
 }
 `
