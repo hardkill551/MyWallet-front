@@ -29,7 +29,7 @@ h1{
 }
 
 
-button{
+button, a{
     align-items:center;
 }
 `
