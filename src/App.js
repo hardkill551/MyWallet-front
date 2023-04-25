@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignIn from "./components/SignInPage/SignIn";
 import SignUp from "./components/SignInPage/SignUp";
-import Home from "./components/Home";
-import NewEntry from "./components/NewEntry";
-import NewExit from "./components/NewExit";
+import Home from "./components/Home/Home";
+import Transactions from "./components/Transactions";
 
 
 function App() {
@@ -13,9 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SignIn/>}/>
         <Route path="/cadastro" element={<SignUp/>}/>
-        <Route path="/Home" element={<Home/>}/>
-        <Route path="/Home" element={<NewEntry/>}/>
-        <Route path="/Home" element={<NewExit/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/nova-transacao/:tipo" element={<Transactions/>}/>
       </Routes>
     </BrowserRouter>
     
