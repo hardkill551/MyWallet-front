@@ -2,9 +2,9 @@
 
 An easy to use financial manager. Track your revenues and expenses to learn how you spend your money and know all the time how much you have.
 
-<img src="/assets/my-wallet-usage.gif" />
+<img src="src/assets/my-wallet.png" />
 
-Try it out now at https://link-to-my-project-deployed.herokuapp.com
+Try it out now at https://my-wallet-front-nine-pi.vercel.app
 
 ## About
 
@@ -34,8 +34,8 @@ The following tools and frameworks were used in the construction of the project:
 ## How to run
 
 1. Clone this repository
-2. Clone the back-end repository at https://github.com/my-user/my-project-backend
-3. Follow instructions to run back-end at https://github.com/my-user/my-project-backend
+2. Clone the back-end repository at https://github.com/hardkill551/MyWallet-back
+3. Follow instructions to run back-end at https://github.com/hardkill551/MyWallet-back
 4. Install dependencies
 ```bash
 npm i
